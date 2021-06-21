@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jun  1 06:19:56 2021
+Created on Sun Jun 20 07:34:23 2021
 
-@author: Haytham Metawie
+@author: Zeina
 """
 
 import pandas as pd # For data manipulation and analaysis.
@@ -34,7 +34,9 @@ def DTAlgo():
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, shuffle =True, test_size=0.3, random_state=42)
     DTC = DecisionTreeClassifier(random_state = 42)
+    # classify
     DTC.fit(X_train,y_train)
+    #predict response
     predDTC = DTC.predict(X_test)
     reportDTC = classification_report(y_test,predDTC, output_dict = True)
     crDTC = pd.DataFrame(reportDTC).transpose()
@@ -43,7 +45,7 @@ def DTAlgo():
     
 
     # Tree Visualisation
-    fig = plt.figure(figsize=(2,1))
+    fig = plt.figure(figsize=(40,20))
     plot = plot_tree(DTC, feature_names=list(dataset.columns), class_names=['negative', 'positive'],filled=True)
     for i in plot:
         arrow = i.arrow_patch
